@@ -3,7 +3,10 @@ import axios from "axios";
 import styles from "./styles.module.css";
 import HomeButton from "@/components/HomeButton";
 
-const topicMap: Record<number, { text: string; type: "positive" | "improvement" }> = {
+const topicMap: Record<
+  number,
+  { text: string; type: "positive" | "improvement" }
+> = {
   1: { text: "🚀 Foi proativo e engajado", type: "positive" },
   2: { text: "🗣️ Se comunicou bem com a equipe", type: "positive" },
   3: { text: "💡 Contribuiu com boas ideias", type: "positive" },
@@ -39,83 +42,92 @@ const ManagerDashboard: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-useEffect(() => {
-  const fetchFeedbacks = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get("http://localhost:8080/feedback/");
-      
-      if (Array.isArray(response.data)) {
-        type ApiMember = {
-          id?: number | null;
-          name?: string;
-          photoUrl?: string;
-        };
-        
-        type ApiFeedback = {
-          id?: number | null;
-          fromMember?: ApiMember;
-          toMember?: ApiMember;
-          topics?: number[];
-          message?: string;
-          createdAt?: string;
-          anonymous?: boolean;
-        };
-        
-                const transformedData: Feedback[] = response.data.map((item: ApiFeedback) => {
-                  console.log('Processando item:', item);
-                  
-                  const fromMember: Member = {
-                    id: item.fromMember?.id ?? null,
-                    name: item.fromMember?.name ?? "Usuário desconhecido",
-                    photoUrl: item.fromMember?.photoUrl ?? "https://i.imgur.com/KIX6nja.jpeg"
-                  };
-                  
-                  const toMember: Member = {
-                    id: item.toMember?.id ?? null,
-                    name: item.toMember?.name ?? "Usuário desconhecido",
-                    photoUrl: item.toMember?.photoUrl ?? "https://i.imgur.com/KIX6nja.jpeg"
-                  };
-                  
-                  const topics = Array.isArray(item.topics) ? item.topics : [];
-                  
-                  return {
-                    id: item.id ?? null,
-                    fromMember,
-                    toMember,
-                    topics,
-                    message: item.message ?? "",
-                    createdAt: item.createdAt ?? new Date().toISOString(),
-                    anonymous: !!item.anonymous
-                  };
-                });
-        
-        setFeedbacks(transformedData);
-      } else {
-        console.error("Resposta da API não é um array:", response.data);
-        setError("Formato de dados inválido recebido do servidor");
+  useEffect(() => {
+    const fetchFeedbacks = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get("http://localhost:8080/feedback/");
+
+        if (Array.isArray(response.data)) {
+          type ApiMember = {
+            id?: number | null;
+            name?: string;
+            photoUrl?: string;
+          };
+
+          type ApiFeedback = {
+            id?: number | null;
+            fromMember?: ApiMember;
+            toMember?: ApiMember;
+            topics?: number[];
+            message?: string;
+            createdAt?: string;
+            anonymous?: boolean;
+          };
+
+          const transformedData: Feedback[] = response.data.map(
+            (item: ApiFeedback) => {
+              console.log("Processando item:", item);
+
+              const fromMember: Member = {
+                id: item.fromMember?.id ?? null,
+                name: item.fromMember?.name ?? "Usuário desconhecido",
+                photoUrl:
+                  item.fromMember?.photoUrl ??
+                  "https://i.imgur.com/KIX6nja.jpeg",
+              };
+
+              const toMember: Member = {
+                id: item.toMember?.id ?? null,
+                name: item.toMember?.name ?? "Usuário desconhecido",
+                photoUrl:
+                  item.toMember?.photoUrl ?? "https://i.imgur.com/KIX6nja.jpeg",
+              };
+
+              const topics = Array.isArray(item.topics) ? item.topics : [];
+
+              return {
+                id: item.id ?? null,
+                fromMember,
+                toMember,
+                topics,
+                message: item.message ?? "",
+                createdAt: item.createdAt ?? new Date().toISOString(),
+                anonymous: !!item.anonymous,
+              };
+            }
+          );
+
+          setFeedbacks(transformedData);
+        } else {
+          console.error("Resposta da API não é um array:", response.data);
+          setError("Formato de dados inválido recebido do servidor");
+        }
+      } catch (err) {
+        console.error("Erro ao buscar feedbacks:", err);
+        setError("Não foi possível carregar os feedbacks.");
       }
-    } catch (err) {
-      console.error("Erro ao buscar feedbacks:", err);
-      setError("Não foi possível carregar os feedbacks.");
-    }
-    setLoading(false);
-  };
+      setLoading(false);
+    };
 
-  fetchFeedbacks();
-}, []);
+    fetchFeedbacks();
+  }, []);
 
-  const totalPositive = feedbacks.filter(f => 
-    f.topics.filter(t => topicMap[t]?.type === "positive").length > 
-    f.topics.filter(t => topicMap[t]?.type === "improvement").length
+  const totalPositive = feedbacks.filter(
+    (f) =>
+      f.topics.filter((t) => topicMap[t]?.type === "positive").length >
+      f.topics.filter((t) => topicMap[t]?.type === "improvement").length
   ).length;
-  
+
   const totalImprovement = feedbacks.length - totalPositive;
 
   return (
     <>
       <div className={styles.homeButtonContainer}>
         <HomeButton onClick={() => (window.location.href = "/")} />
+        <HomeButton children="Finalizar sprint"
+          onClick={() => (window.location.href = "/feedback-hero")}
+        />
       </div>
 
       <div className={styles.container}>
@@ -123,7 +135,9 @@ useEffect(() => {
           <h1 className={styles.title}>Dashboard de Gestão</h1>
           <p className={styles.subtitle}>
             Visão geral dos feedbacks
-            {error && <span className={styles.errorIndicator}> (dados locais)</span>}
+            {error && (
+              <span className={styles.errorIndicator}> (dados locais)</span>
+            )}
           </p>
         </div>
 
@@ -159,13 +173,19 @@ useEffect(() => {
                 const positiveTopics = feedback.topics.filter(
                   (t) => topicMap[t]?.type === "positive"
                 ).length;
-                const improvementTopics = feedback.topics.length - positiveTopics;
-                const feedbackType = positiveTopics >= improvementTopics ? "positive" : "improvement";
-                
+                const improvementTopics =
+                  feedback.topics.length - positiveTopics;
+                const feedbackType =
+                  positiveTopics >= improvementTopics
+                    ? "positive"
+                    : "improvement";
+
                 return (
                   <div
                     key={`feedback-${feedback.id || Math.random()}`}
-                    className={`${styles.feedbackCard} ${styles[`${feedbackType}Card`]}`}
+                    className={`${styles.feedbackCard} ${
+                      styles[`${feedbackType}Card`]
+                    }`}
                   >
                     <div className={styles.feedbackHeader}>
                       <div className={styles.memberInfo}>
@@ -174,7 +194,8 @@ useEffect(() => {
                           alt={`Foto de ${feedback.toMember.name}`}
                           className={styles.memberAvatar}
                           onError={(e) => {
-                            (e.target as HTMLImageElement).src = 'https://i.imgur.com/KIX6nja.jpeg';
+                            (e.target as HTMLImageElement).src =
+                              "https://i.imgur.com/KIX6nja.jpeg";
                           }}
                         />
                         <div className={styles.memberDetails}>
@@ -182,7 +203,9 @@ useEffect(() => {
                             Para: {feedback.toMember.name}
                           </span>
                           <span className={styles.feedbackDate}>
-                            {new Date(feedback.createdAt).toLocaleDateString("pt-BR")}
+                            {new Date(feedback.createdAt).toLocaleDateString(
+                              "pt-BR"
+                            )}
                           </span>
                         </div>
                       </div>
@@ -195,13 +218,13 @@ useEffect(() => {
                         )}
                       </div>
                     </div>
-                    
+
                     <div className={styles.messageBox}>
                       <p className={styles.messageContent}>
                         {feedback.message}
                       </p>
                     </div>
-                    
+
                     <div className={styles.topicsList}>
                       {feedback.topics.slice(0, 3).map((topicId, index) => (
                         <span
@@ -235,7 +258,7 @@ useEffect(() => {
         {error && (
           <div className={styles.errorNotice}>
             <p>{error}</p>
-            <button 
+            <button
               className={styles.retryButton}
               onClick={() => window.location.reload()}
             >

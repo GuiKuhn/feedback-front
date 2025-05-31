@@ -1,6 +1,6 @@
 import FeedbackMember from "../pages/FeedbackMember";
 import { Route, Routes as ReactRoutes, BrowserRouter } from "react-router-dom";
-import { MainPage, Confirmation,  FeedbackSelection, FeedbackDetails, FeedbackHero} from "../pages";
+import { Confirmation,  FeedbackSelection, FeedbackDetails, FeedbackHero} from "../pages";
 import { LandingPage } from "@/pages/LandingPage";
 import Dashboard from "@/pages/UserDashboard";
 

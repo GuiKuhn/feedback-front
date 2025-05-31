@@ -8,8 +8,16 @@
 }
 
 .homeButtonContainer {
+  display: flex;
   padding: 1rem;
   background-color: white;
+  justify-content: space-between;
+}
+
+.feedbackHeroButtonContainer {
+  padding: 1rem;
+  justify-content: right;
+  margin-bottom: 1.5rem;
 }
 
 .header {
