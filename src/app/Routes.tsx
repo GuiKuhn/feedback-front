@@ -1,6 +1,6 @@
 import FeedbackMember from "../pages/FeedbackMember";
 import { Route, Routes as ReactRoutes, BrowserRouter } from "react-router-dom";
-import { MainPage, Confirmation,  FeedbackSelection, FeedbackDetails} from "../pages";
+import { MainPage, Confirmation,  FeedbackSelection, FeedbackDetails, FeedbackHero} from "../pages";
 
 const Routes = () => {
   return (
@@ -14,6 +14,7 @@ const Routes = () => {
           element={<FeedbackSelection />}
         />{" "}
         <Route path="/confirmation" element={<Confirmation />} /> 
+        <Route path="/feedback-hero" element={<FeedbackHero />} />{" "}
       </ReactRoutes>
     </BrowserRouter>
   );
