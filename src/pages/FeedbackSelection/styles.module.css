@@ -23,13 +23,26 @@
   margin-top: 8px;
 }
 
-.option {
+.optionRight {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 6px 8px;
   border-radius: 12px;
-  background-color: #EFEFEF; /* bg-gray-100 */
+  background-color: #fffed4; /* bg-gray-100 */
+  color: #1f2937; /* text-gray-800 */
+  text-align: left;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.optionLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 12px;
+  background-color: #ddffd4; /* bg-gray-100 */
   color: #1f2937; /* text-gray-800 */
   text-align: left;
   transition: background-color 0.2s;
@@ -45,6 +58,15 @@
 
 .option:hover {
   background-color: #e5e7eb; /* hover:bg-gray-200 */
+}
+
+.optionRight.selected {
+  background-color: #fffb00; /* bg-violet-600 */
+}
+
+.optionLeft.selected {
+  background-color: #3b742c; /* bg-violet-600 */
+  color: white;
 }
 
 .icon {
