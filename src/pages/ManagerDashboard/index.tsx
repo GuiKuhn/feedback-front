@@ -48,8 +48,8 @@ useEffect(() => {
       if (Array.isArray(response.data)) {
         type ApiMember = {
           id?: number | null;
-          nome?: string;
-          fotourl?: string;
+          name?: string;
+          photoUrl?: string;
         };
         
         type ApiFeedback = {
@@ -67,14 +67,14 @@ useEffect(() => {
                   
                   const fromMember: Member = {
                     id: item.fromMember?.id ?? null,
-                    name: item.fromMember?.nome ?? "Usuário desconhecido",
-                    photoUrl: item.fromMember?.fotourl ?? "https://i.imgur.com/KIX6nja.jpeg"
+                    name: item.fromMember?.name ?? "Usuário desconhecido",
+                    photoUrl: item.fromMember?.photoUrl ?? "https://i.imgur.com/KIX6nja.jpeg"
                   };
                   
                   const toMember: Member = {
                     id: item.toMember?.id ?? null,
-                    name: item.toMember?.nome ?? "Usuário desconhecido",
-                    photoUrl: item.toMember?.fotourl ?? "https://i.imgur.com/KIX6nja.jpeg"
+                    name: item.toMember?.name ?? "Usuário desconhecido",
+                    photoUrl: item.toMember?.photoUrl ?? "https://i.imgur.com/KIX6nja.jpeg"
                   };
                   
                   const topics = Array.isArray(item.topics) ? item.topics : [];
