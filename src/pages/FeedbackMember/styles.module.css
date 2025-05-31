@@ -36,13 +36,6 @@
   cursor: pointer;
 }
 
-
-.selected-option {
-  background-color: #d1fae5; /* bg-green-100 */
-  color: #065f46; /* text-green-800 */
-  border: 2px solid #10b981; /* border-green-500 */
-}
-
 .option:hover {
   background-color: #e5e7eb; /* hover:bg-gray-200 */
 }
