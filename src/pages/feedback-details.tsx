@@ -54,3 +54,5 @@ export const FeedbackDetails = () => {
     </div>
   );
 };
+
+export default FeedbackDetails;

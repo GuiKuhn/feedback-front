@@ -1,8 +1,6 @@
-import { BrowserRouter, Routes as ReactRoutes, Route } from "react-router-dom";
-import { MainPage } from "../pages";
 import FeedbackMember from "../pages/FeedbackMember";
-import FeedbackSelection from "../pages/FeedbackSelection"; // 👈 novo
-import { FeedbackDetails } from "@/pages/feedback-details";
+import { Route, Routes as ReactRoutes, BrowserRouter } from "react-router-dom";
+import { MainPage, Confirmation,  FeedbackSelection, FeedbackDetails} from "../pages";
 
 const Routes = () => {
   return (
@@ -15,6 +13,7 @@ const Routes = () => {
           path="/feedback-topics"
           element={<FeedbackSelection />}
         />{" "}
+        <Route path="/confirmation" element={<Confirmation />} /> 
       </ReactRoutes>
     </BrowserRouter>
   );
