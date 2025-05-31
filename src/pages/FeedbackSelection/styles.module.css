@@ -14,7 +14,7 @@
 
 .step {
   font-size: 14px;
-  color: #6b7280; /* text-gray-500 */
+  color: #6b7280;
 }
 
 .title {
@@ -29,8 +29,8 @@
   gap: 8px;
   padding: 6px 8px;
   border-radius: 12px;
-  background-color: #fffed4; /* bg-gray-100 */
-  color: #1f2937; /* text-gray-800 */
+  background-color: #fffed4;
+  color: #1f2937;
   text-align: left;
   transition: background-color 0.2s;
   cursor: pointer;
@@ -42,8 +42,8 @@
   gap: 8px;
   padding: 6px 8px;
   border-radius: 12px;
-  background-color: #ddffd4; /* bg-gray-100 */
-  color: #1f2937; /* text-gray-800 */
+  background-color: #ddffd4;
+  color: #1f2937;
   text-align: left;
   transition: background-color 0.2s;
   cursor: pointer;
@@ -51,21 +51,21 @@
 
 
 .selected-option {
-  background-color: #d1fae5; /* bg-green-100 */
-  color: #065f46; /* text-green-800 */
-  border: 2px solid #10b981; /* border-green-500 */
+  background-color: #d1fae5;
+  color: #065f46;
+  border: 2px solid #10b981;
 }
 
 .option:hover {
-  background-color: #e5e7eb; /* hover:bg-gray-200 */
+  background-color: #e5e7eb;
 }
 
 .optionRight.selected {
-  background-color: #fffb00; /* bg-violet-600 */
+  background-color: #fffb00; 
 }
 
 .optionLeft.selected {
-  background-color: #3b742c; /* bg-violet-600 */
+  background-color: #3b742c;
   color: white;
 }
 
@@ -84,7 +84,7 @@
 .backButton {
   padding: 8px 24px;
   border-radius: 9999px;
-  background-color: #1f2937; /* bg-gray-800 */
+  background-color: #1f2937;
   color: white;
   transition: background-color 0.2s;
   cursor: pointer;
@@ -97,7 +97,7 @@
 .confirmButton {
   padding: 8px 24px;
   border-radius: 9999px;
-  background-color: #7c3aed; /* bg-violet-600 */
+  background-color: #7c3aed;
   color: white;
   transition: background-color 0.2s;
   cursor: pointer;

@@ -1,26 +1,50 @@
-import React from 'react';
-import styles from './styles.module.css';
-import { FaUserCircle, FaThumbsUp } from 'react-icons/fa';
-import Confetti from 'react-confetti';
+import styles from "./styles.module.css";
+import { FaUserCircle, FaThumbsUp } from "react-icons/fa";
+import Confetti from "react-confetti";
+import axios from "axios";
+import { useState } from "react";
+import React, { useEffect } from "react";
+import FeedbackHeroCard from "@/components/FeedbackHeroCard";
 
 const FeedbackHero: React.FC = () => {
+  interface response {
+    name: string;
+    photoUrl: string;
+    totalLikes: number;
+  }
+
+  const [res, setRes] = useState<response | null>(null);
+
+  async function getData() {
+    await axios
+      .get<response>("http://localhost:8080/members/merit", {
+        params: {
+          dateStart: "2024-06-04",
+          dateEnd: "2024-06-09",
+        },
+      })
+      .then((res) => {
+        setRes(res.data);
+      });
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div className={styles.container}>
       <Confetti width={window.innerWidth} height={window.innerHeight} />
-
-      <div className={styles.card}>
-        <FaUserCircle className={styles.avatar} />
-
-        <div className={styles.text}>
-          <h2>Julio Filho</h2>
-          <div className={styles.subInfo}>
-            <span>1º lugar</span>
-            <span  className={styles.likes}>
-              3 <FaThumbsUp />
-            </span>
-          </div>
-        </div>
-      </div>
+      {res && (
+        <FeedbackHeroCard
+          member={{
+            id: 0,
+            name: res?.name,
+            photoUrl: res?.photoUrl,
+          }}
+          totalLikes={res.totalLikes}
+        />
+      )}
     </div>
   );
 };
