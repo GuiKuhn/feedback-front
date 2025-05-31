@@ -7,6 +7,9 @@ import { useNavigate } from "react-router-dom";
 export const FeedbackDetails = () => {
   const navigate = useNavigate();
 
+  const param = new URLSearchParams(window.location.search);
+  const memberId = param.get("memberId");
+
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <h1 style={{ fontSize: "2.5vw", marginBottom: "2vh" }}>
@@ -42,12 +45,12 @@ export const FeedbackDetails = () => {
       >
         <BackButton
           onClick={() => {
-            navigate("/feedback-topics");
+            navigate("/feedback-topics?memberId=" + memberId);
           }}
         />
         <ConfirmButton
           onClick={() => {
-            navigate("");
+            navigate("/confirmation");
           }}
         ></ConfirmButton>
       </div>

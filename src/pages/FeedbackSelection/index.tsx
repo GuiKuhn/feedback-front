@@ -83,10 +83,9 @@ const FeedbackSelection: React.FC = () => {
           }}
         />
         <ConfirmButton
-          onClick={() =>
-            navigate(
-              "/feedback-details?memberId=" + memberId + "&feedbackId=1,2,3"
-            )
+          onClick={() =>{
+            navigate(`/feedback-details?memberId=${memberId}&feedbackId=${selected.join(",")}`);
+          }
           }
         />
       </div>
