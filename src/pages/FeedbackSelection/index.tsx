@@ -1,10 +1,13 @@
 import React from "react";
-import styles from "./styles.module.css";
+import { useNavigate } from "react-router-dom";
 import BackButton from "../../components/BackButton";
 import ConfirmButton from "../../components/ConfirmButton";
-import { useNavigate } from "react-router-dom";
+import styles from "./styles.module.css";
 
 const FeedbackSelection: React.FC = () => {
+  const param = new URLSearchParams(window.location.search);
+  const memberId = param.get("memberId");
+
   const options = Array(12)
     .fill("Opção 2")
     .map((label, i) => (i < 2 ? "Opção 1" : label));
@@ -52,7 +55,11 @@ const FeedbackSelection: React.FC = () => {
           }}
         />
         <ConfirmButton
-          onClick={() => (window.location.href = "/feedback-details")}
+          onClick={() =>
+            navigate(
+              "/feedback-details?memberId=" + memberId + "&feedbackId=1,2,3"
+            )
+          }
         />
       </div>
     </div>

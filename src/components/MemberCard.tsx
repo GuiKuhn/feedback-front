@@ -14,7 +14,7 @@ function MemberCard({ member }: { member: Member }) {
     <Card
       className="w-44 h-48 flex flex-col items-center justify-center cursor-pointer hover:shadow-lg transition-shadow duration-300"
       onClick={() => {
-        navigate("/feedback-topics");
+        navigate("/feedback-topics?memberId=" + member.id);
       }}
     >
       <CardContent className="flex flex-col items-center justify-center gap-4">
