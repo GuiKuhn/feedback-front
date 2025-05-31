@@ -1,0 +1,15 @@
+.confirmButton {
+    padding: 8px 24px;
+    border-radius: 9999px;
+    background-color: #7c3aed; /* bg-violet-600 */
+    color: white;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    border: none;
+    font-size: 14px;
+  }
+  
+  .confirmButton:hover {
+    background-color: #6d28d9;
+  }
+  
