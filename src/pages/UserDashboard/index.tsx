@@ -22,18 +22,31 @@ const UserDashboard: React.FC = () => {
   useEffect(() => {
     const fetchFeedbacks = async () => {
       try {
-        const response = await fetch(`https://sua-api.com/members/${memberId}/feedbacks`);
+        const response = await fetch(`http://localhost:8080/members/${memberId}/feedbacks`);
         const data = await response.json();
-        setFeedbacks(data);
+  
+        // transformar os dados
+        const mappedFeedbacks: FeedbackItem[] = data.map((item: any, index: number) => ({
+          id: index + 1, // você pode usar item.id se tiver
+          type: 'positive', // ou 'improvement', se vier do backend
+          content: item.message || 'Sem mensagem',
+          category: item.topics?.[0] || 'Sem categoria',
+          date: '30 Mai, 2025', // mock por enquanto
+          anonymous: item.anonymous,
+          senderName: item.anonymous ? undefined : `Membro ${item.idFromMember}`
+        }));
+  
+        setFeedbacks(mappedFeedbacks);
       } catch (error) {
         console.error('Erro ao buscar feedbacks:', error);
       } finally {
         setLoading(false);
       }
     };
-
+  
     fetchFeedbacks();
   }, [memberId]);
+  
 
   const filteredFeedbacks = activeTab === 'all'
     ? feedbacks
