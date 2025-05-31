@@ -1,0 +1,130 @@
+.container {
+  min-height: calc(100vh - 70px);
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 1rem;
+}
+
+.homeButtonContainer {
+  display: flex;
+  justify-content: flex-start;
+  padding: 1rem;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: white;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.step {
+  font-size: 14px;
+  color: #6b7280; /* text-gray-500 */
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+/* Responsive grid for member cards */
+.memberGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 1rem;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 12px;
+  background-color: #EFEFEF; /* bg-gray-100 */
+  color: #1f2937; /* text-gray-800 */
+  text-align: left;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.option:hover {
+  background-color: #e5e7eb; /* hover:bg-gray-200 */
+}
+
+.icon {
+  font-size: 20px;
+}
+
+.footer {
+  width: 100%;
+  max-width: 768px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.backButton {
+  padding: 8px 24px;
+  border-radius: 9999px;
+  background-color: #1f2937; /* bg-gray-800 */
+  color: white;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.backButton:hover {
+  background-color: #000000;
+}
+
+.confirmButton {
+  padding: 8px 24px;
+  border-radius: 9999px;
+  background-color: #7c3aed; /* bg-violet-600 */
+  color: white;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.confirmButton:hover {
+  background-color: #6d28d9;
+}
+
+/* Media queries for responsiveness */
+@media (min-width: 640px) {
+  .memberGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .memberGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .memberGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+}
