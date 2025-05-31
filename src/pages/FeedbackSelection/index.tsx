@@ -46,8 +46,14 @@ const FeedbackSelection: React.FC = () => {
 
       {/* Rodapé */}
       <div className={styles.footer}>
-        <BackButton onClick={() => {navigate("/feedback-member")}} />
-        <ConfirmButton onClick={() => (window.location.href = "/feedback-details")}/>
+        <BackButton
+          onClick={() => {
+            navigate("/feedback-member");
+          }}
+        />
+        <ConfirmButton
+          onClick={() => (window.location.href = "/feedback-details")}
+        />
       </div>
     </div>
   );

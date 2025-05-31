@@ -44,7 +44,6 @@ const members: Member[] = [
 const FeedbackMember: React.FC = () => {
   return (
     <div className={styles.container}>
-      {/* Cabeçalho */}
       <div className={styles.header}>
         <p className={styles.step}>Etapa - 1</p>
         <h1 className={styles.title}>Select Member </h1>
