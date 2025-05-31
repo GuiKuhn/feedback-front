@@ -11,6 +11,7 @@ const Routes = () => {
         <Route path="/feedback-details" element={<FeedbackDetails></FeedbackDetails>} />
         <Route path="/" element={<MainPage />} />
         <Route path="/feedback" element={<FeedbackSelection />} /> {/* 👈 nova rota */}
+        <Route path="/feedback-details" element={<FeedbackDetails></FeedbackDetails>} />
       </ReactRoutes>
     </BrowserRouter>
   );
