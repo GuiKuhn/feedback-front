@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import styles from './styles.module.css';
 import NewFeedbackButton from '@/components/NewFeedbackButton';
 
@@ -13,59 +13,45 @@ type FeedbackItem = {
   senderName?: string;
 };
 
-const Dashboard: React.FC = () => {
-  const [feedbacks] = useState<FeedbackItem[]>([
-    {
-      id: 1,
-      type: 'positive',
-      content: 'Excelente trabalho coordenando o projeto da última sprint. Sua comunicação clara e liderança ajudaram muito o time.',
-      category: '🗣️ Se comunicou bem com a equipe',
-      date: '30 Mai, 2025',
-      anonymous: false,
-      senderName: 'Samuel Ribeiro'
-    },
-    {
-      id: 2,
-      type: 'positive',
-      content: 'Suas contribuições durante a reunião de planejamento foram muito valiosas e ajudaram a definir melhor o escopo.',
-      category: '💡 Contribuiu com boas ideias',
-      date: '28 Mai, 2025',
-      anonymous: true
-    },
-    {
-      id: 3,
-      type: 'improvement',
-      content: 'Gostaria de sugerir mais atualizações sobre o progresso das suas tarefas durante a semana.',
-      category: '🤐 Comunicação falhou ou foi limitada',
-      date: '25 Mai, 2025',
-      anonymous: true
-    },
-    {
-      id: 4,
-      type: 'positive',
-      content: 'Agradeço sua ajuda com a implementação do novo feature. Seu suporte foi fundamental.',
-      category: '🤝 Ajudou colegas quando necessário',
-      date: '22 Mai, 2025',
-      anonymous: false,
-      senderName: 'Leonardo Wingert'
-    }
-  ]);
-
+const UserDashboard: React.FC = () => {
+  const { memberId } = useParams();
+  const [feedbacks, setFeedbacks] = useState<FeedbackItem[]>([]);
+  const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'all' | 'positive' | 'improvement'>('all');
 
-  const filteredFeedbacks = activeTab === 'all' 
-    ? feedbacks 
+  useEffect(() => {
+    const fetchFeedbacks = async () => {
+      try {
+        const response = await fetch(`https://sua-api.com/members/${memberId}/feedbacks`);
+        const data = await response.json();
+        setFeedbacks(data);
+      } catch (error) {
+        console.error('Erro ao buscar feedbacks:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFeedbacks();
+  }, [memberId]);
+
+  const filteredFeedbacks = activeTab === 'all'
+    ? feedbacks
     : feedbacks.filter(feedback => feedback.type === activeTab);
 
   const positiveCount = feedbacks.filter(f => f.type === 'positive').length;
   const improvementCount = feedbacks.filter(f => f.type === 'improvement').length;
+
+  if (loading) {
+    return <div className={styles.loading}>Carregando feedbacks...</div>;
+  }
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <div>
           <h1 className={styles.title}>Meu Dashboard</h1>
-          <p className={styles.subtitle}>Bem-vindo(a), Bernardo Paiva</p>
+          <p className={styles.subtitle}>Bem-vindo(a), membro {memberId}</p>
         </div>
         <div>
           <Link to="/feedback-member">
@@ -162,4 +148,4 @@ const Dashboard: React.FC = () => {
   );
 };
 
-export default Dashboard;
+export default UserDashboard;
