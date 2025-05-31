@@ -45,7 +45,7 @@ const members: Member[] = [
 const FeedbackMember: React.FC = () => {
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "flex-start", padding: "1rem" }}>
+      <div className={styles.homeButtonContainer}>
         <HomeButton onClick={() => (window.location.href = "/")} />
       </div>
       <div className={styles.container}>
@@ -54,7 +54,7 @@ const FeedbackMember: React.FC = () => {
           <h1 className={styles.title}>Escolher membro</h1>
         </div>
 
-        <div className="grid grid-cols-3 gap-12 p-4">
+        <div className={styles.memberGrid}>
           {members.map((member) => (
             <MemberCard key={member.id} member={member} />
           ))}

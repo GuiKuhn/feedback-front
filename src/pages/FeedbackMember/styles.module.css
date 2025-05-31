@@ -1,16 +1,28 @@
 .container {
-  margin-top: -64px;
-  min-height: 100vh;
+  min-height: calc(100vh - 70px);
   background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 16px;
+  padding: 1rem;
+}
+
+.homeButtonContainer {
+  display: flex;
+  justify-content: flex-start;
+  padding: 1rem;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: white;
 }
 
 .header {
   text-align: center;
+  margin-bottom: 2rem;
 }
 
 .step {
@@ -22,6 +34,16 @@
   font-size: 24px;
   font-weight: 600;
   margin-top: 8px;
+}
+
+/* Responsive grid for member cards */
+.memberGrid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 1rem;
 }
 
 .option {
@@ -79,18 +101,30 @@
   background-color: #6d28d9;
 }
 
-.grid {
-  display: flex;
-  justify-content: center;
-  gap: 32px;
-  margin-top: 32px;
-  width: 100%;
-  max-width: 768px;
+/* Media queries for responsiveness */
+@media (min-width: 640px) {
+  .memberGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
 }
 
-.column {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  flex: 1;
+@media (min-width: 768px) {
+  .title {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .memberGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .memberGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
 }
