@@ -1,12 +1,14 @@
 import FeedbackMember from "../pages/FeedbackMember";
 import { Route, Routes as ReactRoutes, BrowserRouter } from "react-router-dom";
-<<<<<<< HEAD
-import { Confirmation, FeedbackSelection, FeedbackDetails } from "../pages";
 import { LandingPage } from "@/pages/LandingPage";
 import Dashboard from "@/pages/UserDashboard";
-=======
-import { MainPage, Confirmation,  FeedbackSelection, FeedbackDetails, FeedbackHero} from "../pages";
->>>>>>> hero
+import {
+  Confirmation,
+  FeedbackSelection,
+  FeedbackDetails,
+  FeedbackHero,
+} from "../pages";
+import ManagerDashboard from "@/pages/ManagerDashboard";
 
 const Routes = () => {
   return (
@@ -18,6 +20,8 @@ const Routes = () => {
         <Route path="/feedback-topics" element={<FeedbackSelection />} />{" "}
         <Route path="/confirmation" element={<Confirmation />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/manager" element={<ManagerDashboard />} />
+        <Route path="/hero" element={<FeedbackHero />}></Route>
       </ReactRoutes>
     </BrowserRouter>
   );

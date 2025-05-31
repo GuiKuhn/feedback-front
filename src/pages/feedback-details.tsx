@@ -88,6 +88,7 @@ async function handleSubmit() {
         />
         <ConfirmButton
           onClick={() => {
+            navigate("/confirmation");
             setPayload(prev => {
               if(memberId)
                 prev.idToMember = +memberId 
