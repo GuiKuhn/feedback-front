@@ -6,7 +6,7 @@ function Card({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card"
-      style={{ backgroundColor: "#EFEFEF" }}
+      style={{ backgroundColor: "#F8F8F8" }}
       className={cn(
         "text-card-foreground flex flex-col gap-4 rounded-xl border py-8 shadow-sm transition-all hover:shadow-md hover:border-muted-foreground",
         className
@@ -84,10 +84,10 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
 
 export {
   Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
   CardAction,
-  CardDescription,
   CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
 };
