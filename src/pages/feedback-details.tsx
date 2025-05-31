@@ -31,7 +31,7 @@ async function handleSubmit() {
     message: string | null,
     anonymous: boolean,
   }>({
-    idFromMember: 0,
+    idFromMember: 2,
     idToMember: 0,
     topics: [],
     anonymous: false,
