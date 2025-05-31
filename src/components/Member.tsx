@@ -1,11 +1,11 @@
-import { Card } from "./ui/card";
+import { Card,CardTitle} from "./ui/card";
 import img from "../assets/download.jpeg"
 
-function Member(){
+function Member({name}:{name:string}){
   return(
-    <Card>
-      <img src={img} alt="" className="object-cover h-24"/>
-      <h1>dasokdako</h1>
+    <Card className="text-center">
+      <img src={img} alt="" className="object-cover h-48 w-48 rounded-full mx-auto"/>
+      <CardTitle>{name}</CardTitle>
     </Card>
   )
 }
