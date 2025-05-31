@@ -1,7 +1,5 @@
 import { Route, Routes as ReactRoutes, BrowserRouter } from "react-router-dom";
-import { MainPage } from "../pages";
-import FeedbackSelection from "../pages/FeedbackSelection"; // 👈 novo
-import { FeedbackDetails } from "@/pages/feedback-details";
+import { MainPage, Confirmation,  FeedbackSelection, FeedbackDetails} from "../pages";
 
 const Routes = () => {
   return (
@@ -10,6 +8,7 @@ const Routes = () => {
         <Route path="/" element={<MainPage />} />
         <Route path="/feedback" element={<FeedbackSelection />} /> {/* 👈 nova rota */}
         <Route path="/feedback-details" element={<FeedbackDetails />} />
+        <Route path="/confirmation" element={<Confirmation />} /> {/* 👈 nova rota */}
       </ReactRoutes>
     </BrowserRouter>
   );
