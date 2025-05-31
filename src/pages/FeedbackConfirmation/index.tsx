@@ -18,8 +18,8 @@ const FeedbackConfirmation: React.FC = () => {
             </div>
 
             <div className={styles.buttons}>
-                <NewFeedbackButton />
-                <HomeButton />
+                <NewFeedbackButton onClick={() => { window.location.href = '/feedback-member'; }} />
+                <HomeButton onClick={() => { window.location.href = '/'; }} />
             </div>
         </div>
     );

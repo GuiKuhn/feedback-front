@@ -1,60 +1,66 @@
 import React from "react";
 import MemberCard, { type Member } from "../../components/MemberCard";
 import styles from "./styles.module.css";
+import HomeButton from "@/components/HomeButton";
 
 const members: Member[] = [
   {
     name: "Samuel Ribeiro",
     id: 1,
     photoUrl:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0mABcIa-JzRlzyG1idAyXkK00R1M6A-5vjA&s",
+      "https://i.imgur.com/7zzeEb8.jpeg",
   },
   {
     name: "Bernardo Paiva",
     id: 2,
     photoUrl:
-      "https://veja.abril.com.br/wp-content/uploads/2024/08/neymar-santos.jpg?quality=70&strip=info&w=414&h=280&crop=1",
+      "https://i.imgur.com/aMXs8Ui.jpeg",
   },
   {
     id: 3,
     name: "Leonardo Wingert",
     photoUrl:
-      "https://a.espncdn.com/photo/2025/0131/r1445897_1296x729_16-9.jpg",
+      "https://i.imgur.com/6x6nb73.jpeg",
   },
   {
     id: 4,
     name: "Guilherme Kuhn",
     photoUrl:
-      "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2023/09/GettyImages-1668971338-e1694439970587.jpg?w=1200&h=900&crop=1",
+      "https://i.imgur.com/KIX6nja.jpeg",
   },
   {
     id: 5,
     name: "João Demari",
     photoUrl:
-      "https://img.nsctotal.com.br/wp-content/uploads/2024/12/Neymar.jpg",
+      "https://i.imgur.com/VlUqd9Q.jpeg",
   },
   {
     id: 6,
-    name: "Lucas Silva",
+    name: "Julio Filho",
     photoUrl:
-      "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2025/03/neymar-santos_2e1987-e1741616548279.jpg?w=1200&h=675&crop=1",
+      "https://i.imgur.com/Qx4BXu6.jpeg",
   },
 ];
 
 const FeedbackMember: React.FC = () => {
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <p className={styles.step}>Etapa - 1</p>
-        <h1 className={styles.title}>Select Member </h1>
+    <>
+      <div style={{ display: "flex", justifyContent: "flex-start", padding: "1rem" }}>
+        <HomeButton onClick={() => (window.location.href = "/")} />
       </div>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <p className={styles.step}>Etapa - 1</p>
+          <h1 className={styles.title}>Select Member </h1>
+        </div>
 
-      <div className="grid grid-cols-3 gap-12 p-4">
-        {members.map((member) => (
-          <MemberCard key={member.id} member={member} />
-        ))}
+        <div className="grid grid-cols-3 gap-12 p-4">
+          {members.map((member) => (
+            <MemberCard key={member.id} member={member} />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
