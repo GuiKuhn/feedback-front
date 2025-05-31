@@ -4,8 +4,8 @@ import BackButton from "../../components/BackButton";
 import ConfirmButton from "../../components/ConfirmButton";
 
 type Option = {
-  name: string
-  id: number
+  name: string;
+  id: number;
 };
 
 const options: Option[] = [
@@ -52,8 +52,11 @@ const FeedbackSelection: React.FC = () => {
         <div className={styles.column}>
           {leftColumn.map((option) => (
             <button
+             
               key={option.id}
-              className={`${styles.optionLeft} ${selected.includes(option.id) ? styles.selected : ""}`}
+              className={`${styles.optionLeft} ${
+                selected.includes(option.id) ? styles.selected : ""
+              }`}
               onClick={() => toggleOption(option.id)}
               type="button"
             >
@@ -66,7 +69,9 @@ const FeedbackSelection: React.FC = () => {
           {rightColumn.map((option) => (
             <button
               key={option.id}
-              className={`${styles.optionRight} ${selected.includes(option.id) ? styles.selected : ""}`}
+              className={`${styles.optionRight} ${
+                selected.includes(option.id) ? styles.selected : ""
+              }`}
               onClick={() => toggleOption(option.id)}
               type="button"
             >
@@ -83,10 +88,14 @@ const FeedbackSelection: React.FC = () => {
           }}
         />
         <ConfirmButton
-          onClick={() =>{
-            navigate(`/feedback-details?memberId=${memberId}&feedbackId=${selected.join(",")}`);
-          }
-          }
+         disabled={selected.length == 0}
+          onClick={() => {
+            navigate(
+              `/feedback-details?memberId=${memberId}&feedbackId=${selected.join(
+                ","
+              )}`
+            );
+          }}
         />
       </div>
     </div>
