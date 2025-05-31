@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './styles.module.css';
 import { FaCheck } from "react-icons/fa6"; // troquei aqui
+import NewFeedbackButton from '../../components/NewFeedbackButton';
+import HomeButton from '@/components/HomeButton';
 
 
 const FeedbackConfirmation: React.FC = () => {
@@ -16,12 +18,8 @@ const FeedbackConfirmation: React.FC = () => {
             </div>
 
             <div className={styles.buttons}>
-                <button className={styles.button}>
-                    Novo feedback
-                </button>
-                <button className={styles.button}>
-                    Home
-                </button>
+                <NewFeedbackButton />
+                <HomeButton />
             </div>
         </div>
     );
