@@ -14,7 +14,7 @@ const LandingPage = () => {
           <Link to="/feedback-member" className={styles.primaryButton}>
             Iniciar Feedback
           </Link>
-          <Link to="/dashboard" className={styles.secondaryButton}>
+          <Link to="/dashboard/2" className={styles.secondaryButton}>
             Ver meus feedbacks
           </Link>
         </div>
