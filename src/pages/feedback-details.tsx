@@ -2,8 +2,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import BackButton from "@/components/BackButton";
 import ConfirmButton from "@/components/ConfirmButton";
+import { useNavigate } from "react-router-dom";
 
 export const FeedbackDetails = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <h1 style={{ fontSize: "2.5vw", marginBottom: "2vh" }}>
@@ -37,8 +40,16 @@ export const FeedbackDetails = () => {
         className="flex justify-between items-center mt-8"
         style={{ width: "35vw" }}
       >
-        <BackButton onClick={() => window.location.href = "/feedback"} />
-        <ConfirmButton onClick={() => window.location.href = "/feedback-confirmation"}></ConfirmButton>
+        <BackButton
+          onClick={() => {
+            navigate("/feedback-topics");
+          }}
+        />
+        <ConfirmButton
+          onClick={() => {
+            navigate("");
+          }}
+        ></ConfirmButton>
       </div>
     </div>
   );

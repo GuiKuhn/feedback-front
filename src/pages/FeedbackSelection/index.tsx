@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./styles.module.css";
 import BackButton from "../../components/BackButton";
 import ConfirmButton from "../../components/ConfirmButton";
+import { useNavigate } from "react-router-dom";
 
 const FeedbackSelection: React.FC = () => {
   const options = Array(12)
@@ -12,6 +13,8 @@ const FeedbackSelection: React.FC = () => {
   const middle = Math.ceil(options.length / 2);
   const leftColumn = options.slice(0, middle);
   const rightColumn = options.slice(middle);
+
+  const navigate = useNavigate();
 
   return (
     <div className={styles.container}>
@@ -43,7 +46,7 @@ const FeedbackSelection: React.FC = () => {
 
       {/* Rodapé */}
       <div className={styles.footer}>
-        <BackButton onClick={() => (window.location.href = "/")} />
+        <BackButton onClick={() => {navigate("/feedback-member")}} />
         <ConfirmButton onClick={() => (window.location.href = "/feedback-details")}/>
       </div>
     </div>
