@@ -1,8 +1,12 @@
 import FeedbackMember from "../pages/FeedbackMember";
 import { Route, Routes as ReactRoutes, BrowserRouter } from "react-router-dom";
+<<<<<<< HEAD
 import { Confirmation, FeedbackSelection, FeedbackDetails } from "../pages";
 import { LandingPage } from "@/pages/LandingPage";
 import Dashboard from "@/pages/UserDashboard";
+=======
+import { MainPage, Confirmation,  FeedbackSelection, FeedbackDetails, FeedbackHero} from "../pages";
+>>>>>>> hero
 
 const Routes = () => {
   return (
