@@ -43,13 +43,9 @@ useEffect(() => {
   const fetchFeedbacks = async () => {
     setLoading(true);
     try {
-      // Configuração do axios para usar a API
       const response = await axios.get("http://localhost:8080/feedback/");
-      console.log("Dados recebidos da API:", response.data);
       
-      // Transformar os dados para o formato esperado pelo componente
       if (Array.isArray(response.data)) {
-        // Defina um tipo para os itens retornados pela API
         type ApiMember = {
           id?: number | null;
           nome?: string;
@@ -67,24 +63,20 @@ useEffect(() => {
         };
         
                 const transformedData: Feedback[] = response.data.map((item: ApiFeedback) => {
-                  // Log para debug
                   console.log('Processando item:', item);
                   
-                  // Construir o objeto fromMember
                   const fromMember: Member = {
                     id: item.fromMember?.id ?? null,
                     name: item.fromMember?.nome ?? "Usuário desconhecido",
                     photoUrl: item.fromMember?.fotourl ?? "https://i.imgur.com/KIX6nja.jpeg"
                   };
                   
-                  // Construir o objeto toMember
                   const toMember: Member = {
                     id: item.toMember?.id ?? null,
                     name: item.toMember?.nome ?? "Usuário desconhecido",
                     photoUrl: item.toMember?.fotourl ?? "https://i.imgur.com/KIX6nja.jpeg"
                   };
                   
-                  // Verificar se topics existe e é um array
                   const topics = Array.isArray(item.topics) ? item.topics : [];
                   
                   return {
@@ -102,13 +94,10 @@ useEffect(() => {
       } else {
         console.error("Resposta da API não é um array:", response.data);
         setError("Formato de dados inválido recebido do servidor");
-        setFeedbacks(generateMockFeedbacks());
       }
     } catch (err) {
       console.error("Erro ao buscar feedbacks:", err);
-      setError("Não foi possível carregar os feedbacks. Exibindo dados locais.");
-      // Fallback para dados mockados
-      setFeedbacks(generateMockFeedbacks());
+      setError("Não foi possível carregar os feedbacks.");
     }
     setLoading(false);
   };
@@ -116,7 +105,6 @@ useEffect(() => {
   fetchFeedbacks();
 }, []);
 
-  // Números básicos para estatísticas
   const totalPositive = feedbacks.filter(f => 
     f.topics.filter(t => topicMap[t]?.type === "positive").length > 
     f.topics.filter(t => topicMap[t]?.type === "improvement").length
@@ -139,7 +127,6 @@ useEffect(() => {
           </p>
         </div>
 
-        {/* Estatísticas básicas */}
         <div className={styles.statsContainer}>
           <div className={styles.statCard}>
             <div>
@@ -163,14 +150,12 @@ useEffect(() => {
           </div>
         </div>
 
-        {/* Lista de feedbacks */}
         {loading ? (
           <div className={styles.loadingState}>Carregando feedbacks...</div>
         ) : (
           <div className={styles.feedbackList}>
             {feedbacks.length > 0 ? (
               feedbacks.map((feedback) => {
-                // Classificar feedback como positivo ou melhoria
                 const positiveTopics = feedback.topics.filter(
                   (t) => topicMap[t]?.type === "positive"
                 ).length;
@@ -261,57 +246,6 @@ useEffect(() => {
       </div>
     </>
   );
-};
-
-// Função para gerar dados mockados como fallback
-const generateMockFeedbacks = (): Feedback[] => {
-  return [
-    {
-      id: 1,
-      fromMember: { id: 1, name: "Samuel Ribeiro", photoUrl: "https://i.imgur.com/7zzeEb8.jpeg" },
-      toMember: { id: 2, name: "Bernardo Paiva", photoUrl: "https://i.imgur.com/aMXs8Ui.jpeg" },
-      topics: [1, 3, 6],
-      message: "Excelente trabalho na última sprint, especialmente na sua liderança do projeto de frontend.",
-      createdAt: "2025-05-25T10:30:00",
-      anonymous: false
-    },
-    {
-      id: 2,
-      fromMember: { id: 3, name: "Leonardo Wingert", photoUrl: "https://i.imgur.com/6x6nb73.jpeg" },
-      toMember: { id: 4, name: "Guilherme Kuhn", photoUrl: "https://i.imgur.com/KIX6nja.jpeg" },
-      topics: [2, 4],
-      message: "Gostei muito da sua disposição em ajudar a equipe quando tivemos problemas com o deploy.",
-      createdAt: "2025-05-24T14:15:00",
-      anonymous: true
-    },
-    {
-      id: 3,
-      fromMember: { id: 5, name: "João Demari", photoUrl: "https://i.imgur.com/VlUqd9Q.jpeg" },
-      toMember: { id: 1, name: "Samuel Ribeiro", photoUrl: "https://i.imgur.com/7zzeEb8.jpeg" },
-      topics: [7, 8, 10],
-      message: "Senti falta de mais comunicação durante o desenvolvimento da API. Isso causou alguns atrasos no time.",
-      createdAt: "2025-05-23T09:45:00",
-      anonymous: false
-    },
-    {
-      id: 4,
-      fromMember: { id: 2, name: "Bernardo Paiva", photoUrl: "https://i.imgur.com/aMXs8Ui.jpeg" },
-      toMember: { id: 3, name: "Leonardo Wingert", photoUrl: "https://i.imgur.com/6x6nb73.jpeg" },
-      topics: [1, 2, 5],
-      message: "Seu comprometimento com os prazos é exemplar, sempre entregando conforme planejado.",
-      createdAt: "2025-05-22T16:20:00",
-      anonymous: false
-    },
-    {
-      id: 5,
-      fromMember: { id: 4, name: "Guilherme Kuhn", photoUrl: "https://i.imgur.com/KIX6nja.jpeg" },
-      toMember: { id: 6, name: "Julio Filho", photoUrl: "https://i.imgur.com/Qx4BXu6.jpeg" },
-      topics: [9, 10],
-      message: "Tivemos alguns problemas com atrasos nas entregas que impactaram o cronograma do projeto.",
-      createdAt: "2025-05-21T11:10:00",
-      anonymous: true
-    }
-  ];
 };
 
 export default ManagerDashboard;
