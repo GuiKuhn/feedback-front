@@ -51,7 +51,7 @@ const FeedbackMember: React.FC = () => {
       <div className={styles.container}>
         <div className={styles.header}>
           <p className={styles.step}>Etapa - 1</p>
-          <h1 className={styles.title}>Select Member </h1>
+          <h1 className={styles.title}>Escolher membro</h1>
         </div>
 
         <div className="grid grid-cols-3 gap-12 p-4">
